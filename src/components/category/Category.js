@@ -93,7 +93,7 @@ const Category = () => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold"
+                  className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold"
               >
                 Personal todo list is Empty!
               </motion.li>
