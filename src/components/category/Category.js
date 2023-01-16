@@ -89,9 +89,14 @@ const Category = () => {
                 ))}
               </>
             ) : (
-              <li className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold">
+              <motion.li
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold"
+              >
                 Personal todo list is Empty!
-              </li>
+              </motion.li>
             )}
           </ul>
         )}
@@ -104,17 +109,35 @@ const Category = () => {
                 ))}
               </>
             ) : (
-              <li className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold">
+              <motion.li
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold"
+              >
                 Business todo list is Empty!
-              </li>
+              </motion.li>
             )}
           </ul>
         )}
         {activeothers && (
           <ul className="w-full h-[90%] flex flex-col items-center gap-2 px-2">
-            {othersTodos.map((item) => (
-              <TodoList key={item._id} todo={item.todo} _id={item._id} />
-            ))}
+            {othersTodos.length > 0 ? (
+              <>
+                {othersTodos.map((item) => (
+                  <TodoList key={item._id} todo={item.todo} _id={item._id} />
+                ))}
+              </>
+            ) : (
+              <motion.li
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold"
+              >
+                Others todo list is Empty!
+              </motion.li>
+            )}
           </ul>
         )}
       </div>
