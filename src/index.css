@@ -9,3 +9,7 @@
     @apply w-7 h-7 rounded-full bg-gray-800 hover:bg-gray-900 cursor-pointer duration-500 text-gray-400 hover:text-white border border-transparent hover:border-gray-500 flex justify-center items-center;
   }
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

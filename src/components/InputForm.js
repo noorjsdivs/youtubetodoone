@@ -138,7 +138,7 @@ const InputForm = () => {
       {showSuccess && <SuccessMsg successMsg={successMsg} />}
       {/* ========================= Success Message end here ======================== */}
       {showRemove && (
-        <div className="absolute w-full h-screen bg-bodyColor top-0 left-0 bg-opacity-60">
+        <div className="w-full h-screen fixed bg-bodyColor top-0 left-0 bg-opacity-60">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
