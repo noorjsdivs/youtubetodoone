@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { MdDelete } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { deleteTodos } from "../reduxStore/todoSlice";
 
-const TodoList = ({ todo }) => {
+const TodoList = ({ todo, _id }) => {
+  const dispatch = useDispatch();
   const [mark, setMark] = useState(false);
   return (
     <motion.li
@@ -19,7 +22,10 @@ const TodoList = ({ todo }) => {
       } w-full font-tiitleFont font-medium text-base border-[1px] border-l-[6px]  px-2 py-1 cursor-pointer flex justify-between items-center`}
     >
       {todo}
-      <span className="text-xl text-gray-300 hover:text-red-500 duration-300 cursor-pointer">
+      <span
+        onClick={() => dispatch(deleteTodos(_id))}
+        className="text-xl text-gray-300 hover:text-red-500 duration-300 cursor-pointer"
+      >
         <MdDelete />
       </span>
     </motion.li>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { FaChevronDown } from "react-icons/fa";
 import TodoList from "./TodoList";
 import ErrMsg from "./Msg/ErrMsg";
 import SuccessMsg from "./Msg/SuccessMsg";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodos } from "../reduxStore/todoSlice";
+import { addTodos, removeTodos } from "../reduxStore/todoSlice";
 
 const InputForm = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,9 @@ const InputForm = () => {
   const [category, setCategory] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
-  const [shwoErr, setShowErr] = useState(false);
-  const [shwoSuccess, setShowSuccess] = useState(false);
+  const [showErr, setShowErr] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showRemove, setShowRemove] = useState(false);
   const options = [
     {
       _id: 1000,
@@ -38,10 +40,15 @@ const InputForm = () => {
     if (todoValue === "") {
       setErrMsg("Please write your todo!");
       setShowErr(true);
+      setShowSuccess(false);
     } else if (category === "") {
       setErrMsg("Select a category!");
-      setShowSuccess(false);
       setShowErr(true);
+      setShowSuccess(false);
+    } else if (category === "categories") {
+      setErrMsg("Select a valid Category!");
+      setShowErr(true);
+      setShowSuccess(false);
     } else {
       dispatch(
         addTodos({
@@ -57,14 +64,13 @@ const InputForm = () => {
     }
   };
   useEffect(() => {
-    setTimeout(() => {
-      setShowErr(false);
-    }, 4000);
+    const timer = setTimeout(() => {
+      showErr && setShowErr(false);
+      showSuccess && setShowSuccess(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [showErr, showSuccess]);
 
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 4000);
-  }, [errMsg, successMsg]);
   return (
     <div className="w-full bg-bodyColor flex flex-col gap-4">
       <div className="flex gap-4 w-full h-12">
@@ -97,13 +103,12 @@ const InputForm = () => {
       </button>
       {/* ========================= Todo list start here =========================== */}
 
-      <div>
+      <div className="flex flex-col gap-4">
         <ul className="grid grid-cols-1 gap-4 border border-gray-600 shadow-todoShodow mt-6 p-4">
           {todosItem.length > 0 ? (
             <>
-              {" "}
               {todosItem.map((item) => (
-                <TodoList key={item._id} todo={item.todo} />
+                <TodoList key={item._id} todo={item.todo} _id={item._id} />
               ))}
             </>
           ) : (
@@ -112,15 +117,58 @@ const InputForm = () => {
             </p>
           )}
         </ul>
+        {todosItem.length > 0 && (
+          <motion.button
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            onClick={() => setShowRemove(true)}
+            className="w-40 h-8 text-sm font-titleFont text-orange-500 hover:text-red-500 font-semibold mx-auto bg-transparent border-[1px] border-gray-500 hover:border-red-500 duration-300"
+          >
+            Remove todos
+          </motion.button>
+        )}
       </div>
       {/* ========================= Todo list end here ============================== */}
 
       {/* ========================= Error Message start here ======================== */}
-      {shwoErr && <ErrMsg errMsg={errMsg} />}
+      {showErr && <ErrMsg errMsg={errMsg} />}
       {/* ========================= Error Message end here ========================== */}
       {/* ========================= Success Message start here ====================== */}
-      {shwoSuccess && <SuccessMsg successMsg={successMsg} />}
+      {showSuccess && <SuccessMsg successMsg={successMsg} />}
       {/* ========================= Success Message end here ======================== */}
+      {showRemove && (
+        <div className="absolute w-full h-screen bg-bodyColor top-0 left-0 bg-opacity-60">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-8 py-4 bg-bodyColor border border-red-500 rounded-md z-50 flex flex-col gap-4 shadow-todoShodow"
+          >
+            <p className="text-xl text-center font-medium text-red-500">
+              Are you sure to{" "}
+              <span className="font-semibold underline underline-offset-2 decoration-[1px]">
+                remove
+              </span>{" "}
+              all the todos?
+            </p>
+            <div className="flex items-center gap-4 justify-center">
+              <button
+                onClick={() => dispatch(removeTodos()) & setShowRemove(false)}
+                className="px-6 py-2 text-base font-titleFont text-orange-500 hover:text-red-500 font-semibold bg-transparent border-[1px] border-gray-500 hover:border-red-500 duration-300"
+              >
+                Yes
+              </button>
+              <button
+                onClick={() => setShowRemove(false)}
+                className="px-6 py-2 text-base font-titleFont text-orange-500 hover:text-green-500 font-semibold bg-transparent border-[1px] border-gray-500 hover:border-green-500 duration-300"
+              >
+                No
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 };

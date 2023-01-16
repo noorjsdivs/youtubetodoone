@@ -17,7 +17,7 @@ const Footer = () => {
         optio? Est.
       </p>
       <div className="flex gap-2 justify-center mt-3">
-        <span className="w-6 h-6 rounded-full bg-gray-800 hover:bg-gray-900 cursor-pointer duration-500 text-gray-400 hover:text-white border border-transparent hover:border-gray-500 flex justify-center items-center">
+        <span className="footerIcon">
           <FaGithub />
         </span>
         <span className="footerIcon">
