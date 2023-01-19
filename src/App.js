@@ -8,9 +8,8 @@ function App() {
   const todosItem = useSelector((state) => state.todos.todosList);
   return (
     <div className="w-full min-h-screen pt-4 font-bodyFont bg-gradient-to-t from-sky-600 via-sky-400 to-sky-300 text-white px-4 flex flex-col gap-10 justify-center items-center">
-      <div className="w-[350px] md:w-[680px] mdl:w-[730px] lgl:w-[850px] md:h-[150px]">
-        {todosItem.length > 0 ? <Category /> : ""}
-      </div>
+      {todosItem.length > 0 ? <Category /> : ""}
+
       <div className="max-w-[850px] p-10 bg-bodyColor flex flex-col gap-10">
         <InputForm />
         <Footer />

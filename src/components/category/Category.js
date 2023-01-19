@@ -36,7 +36,7 @@ const Category = () => {
       initial={{ y: 10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-full bg-bodyColor flex flex-col md:flex-row"
+      className="w-[350px] md:w-[680px] mdl:w-[730px] lgl:w-[850px] md:h-[150px] bg-bodyColor flex flex-col md:flex-row"
     >
       <div className="w-full md:w-[16%] h-full flex flex-col justify-between">
         <button
@@ -93,7 +93,7 @@ const Category = () => {
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                  className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold"
+                className="w-full h-full text-lg flex justify-center items-center text-red-500 text-center font-semibold"
               >
                 Personal todo list is Empty!
               </motion.li>
