@@ -36,16 +36,16 @@ const Category = () => {
       initial={{ y: 10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-[850px] h-[150px] bg-bodyColor flex"
+      className="w-full h-full bg-bodyColor flex flex-col md:flex-row"
     >
-      <div className="w-[16%] h-full flex flex-col justify-between">
+      <div className="w-full md:w-[16%] h-full flex flex-col justify-between">
         <button
           onClick={() =>
             setActivePersonal(true) &
             setActiveBusiness(false) &
             setActiveOthers(false)
           }
-          className="h-1/3 border-[1px] border-gray-500 border-b-0 text-gray-300 hover:text-white duration-300"
+          className="h-full md:h-1/3 border-[1px] border-gray-500 border-b-0 text-gray-300 hover:text-white duration-300"
         >
           Personal
         </button>
@@ -55,7 +55,7 @@ const Category = () => {
             setActiveBusiness(true) &
             setActiveOthers(false)
           }
-          className="h-1/3 border-[1px] border-gray-500 border-b-0 text-gray-300 hover:text-white duration-300"
+          className="h-full md:h-1/3 border-[1px] border-gray-500 border-b-0 text-gray-300 hover:text-white duration-300"
         >
           Business
         </button>
@@ -65,12 +65,12 @@ const Category = () => {
             setActiveBusiness(false) &
             setActiveOthers(true)
           }
-          className="h-1/3 border-[1px] border-gray-500 text-gray-300 hover:text-white duration-300"
+          className="h-full md:h-1/3 border-[1px] border-gray-500 text-gray-300 hover:text-white duration-300"
         >
           Others
         </button>
       </div>
-      <div className="w-[80%] h-full flex items-center overflow-y-scroll scrollbar-hide">
+      <div className="w-full md:w-[80%] h-full flex items-center overflow-y-scroll scrollbar-hide">
         <p
           className={`${
             activePersonal || activebusiness || activeothers

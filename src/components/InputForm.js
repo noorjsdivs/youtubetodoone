@@ -73,18 +73,18 @@ const InputForm = () => {
 
   return (
     <div className="w-full bg-bodyColor flex flex-col gap-4">
-      <div className="flex gap-4 w-full h-12">
+      <div className="flex flex-col mdl:flex-row gap-4 w-full h-auto">
         <input
           onChange={(e) => setTodoValue(e.target.value)}
           value={todoValue}
-          className="w-[80%] h-full bg-bodyColor border-[1px] border-gray-400 py-2 px-4 placeholder:text-gray-400 text-white text-base placeholder:text-sm tracking-wide rounded-md outline-none focus-visible:border-orange-600 hover:border-white"
+          className="w-full mdl:w-[75%] xl:w-[80%] h-12 bg-bodyColor border-[1px] border-gray-400 py-2 px-4 placeholder:text-gray-400 text-white text-base placeholder:text-sm tracking-wide rounded-md outline-none focus-visible:border-orange-600 hover:border-white"
           type="text"
           placeholder="Enter your Todo..."
         />
-        <div className="w-[20%] h-full relative">
+        <div className="w-full mdl:w-[25%] xl:w-[20%] h-full relative">
           <select
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full h-full text-center capitalize outline-none bg-bodyColor border-[1px] border-gray-400 px-1 cursor-pointer appearance-none rounded-md focus-visible:border-orange-600 hover:border-white"
+            className="w-full h-12 text-center capitalize outline-none bg-bodyColor border-[1px] border-gray-400 px-1 cursor-pointer appearance-none rounded-md focus-visible:border-orange-600 hover:border-white"
           >
             {options.map((item) => (
               <option key={item._id}>{item.title}</option>
@@ -143,9 +143,9 @@ const InputForm = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-8 py-4 bg-bodyColor border border-red-500 rounded-md z-50 flex flex-col gap-4 shadow-todoShodow"
+            className="absolute w-80 lgl:w-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-2 lgl:px-8 py-4 bg-bodyColor border border-red-500 rounded-md z-50 flex flex-col gap-4 shadow-todoShodow"
           >
-            <p className="text-xl text-center font-medium text-red-500">
+            <p className="text-base lgl:text-xl text-center font-medium text-red-500">
               Are you sure to{" "}
               <span className="font-semibold underline underline-offset-2 decoration-[1px]">
                 remove
